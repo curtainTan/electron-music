@@ -54,7 +54,13 @@ app.on( 'ready', () => {
         const updateTracks = myStore.addTracks( tracks ).getTracks()
         console.log( updateTracks )
         // addWindow.close()
-        mainWindow.sender.send( "getTracks", updateTracks )
+        mainWindow.send( "getTracks", updateTracks )
+    } )
+    ipcMain.on( "delete-track", ( event, deletedId ) => {
+        console.log( "传过来的id", deletedId )
+        myStore.deleteTrack( deletedId )
+        const updatedTracks = myStore.getTracks()
+        mainWindow.send( "getTracks", updatedTracks )
     } )
 
 } )
