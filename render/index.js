@@ -42,7 +42,7 @@ const renderPlayHTML = ( name, duration ) => {
                     正在播放：${ name }
                   </div>
                 <div class= "col">
-                    <span id="current-seeker">00:00</span> / ${duration}
+                    <span id="current-seeker">00:00</span> / ${ duration }
                 </div>`
     playerEl.innerHTML = html
 }
@@ -60,7 +60,7 @@ const updateProgressHTML = ( currentTime, duration ) => {
 
 musicAudio.addEventListener( "loadedmetadata", () => {
     // 渲染播放器状态
-    renderPlayHTML( currentTrack.fileName, musicAudio.duration )
+    renderPlayHTML( currentTrack.fileName, convertDuration( musicAudio.duration ) )
 } )
 
 musicAudio.addEventListener( "timeupdate", () => {
