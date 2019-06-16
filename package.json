@@ -1,10 +1,57 @@
 {
-  "name": "my-music",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "my-music-tan",
+  "version": "1.0.2",
+  "description": "一个本地音乐的小demo--嘻嘻",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon --watch main.js --exec electron ."
+    "start": "nodemon --watch main.js --exec electron .",
+    "dist": "build",
+    "mas": "electron-builder --mac mas"
+  },
+  "build": {
+    "appId": "my-music",
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "dmg": {
+      "background": "build/appdmg.png",
+      "icon": "build/icon.icns",
+      "iconSize": 100,
+      "contents": [
+        {
+          "x": 380,
+          "y": 280,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 110,
+          "y": 280,
+          "type": "file"
+        }
+      ],
+      "window": {
+        "width": 500,
+        "height": 500
+      }
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "nsis-web",
+      "icon": "build/icon.ico",
+      "artifactName": "${productName}-Web-Setup-${version}.${ext}",
+      "publisherName": "Kandra Labs, Inc."
+    },
+    "nsis": {
+        "allowToChangeInstallationDirectory": true,
+        "oneClick": false,
+        "perMachine": false
+    }
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -14,16 +61,19 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "Viking Zhang",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^5.0.2",
-    "electron-builder": "^20.43.0",
-    "nodemon": "^1.19.1"
+    "electron-builder": "^20.40.2",
+    "nodemon": "^1.18.10"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "electron-store": "^3.3.0",
+    "electron-builder-squirrel-windows": "^20.44.0",
+    "electron-store": "^3.2.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
     "uuid": "^3.3.2"
   }
 }
